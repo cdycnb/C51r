@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <reg51.h>
+
+void delay(unsigned int time) {
+    unsigned int i, j;
+    for (i = 0; i < time; i++) {
+        for (j = 0; j < 1275; j++);
+    }
+}
+
+void main() {
+	  unsigned int i;
+    P2 = 0x00;
+    delay(1);
+    P2 = 0xfe;
+    while (1)
+    {
+        if(P2 == 0xff){
+            P2 = 0xfe;
+        }
+        else{
+            P2 = P2<<1 | 0x01;
+						delay(100);
+				}
+    }
+}

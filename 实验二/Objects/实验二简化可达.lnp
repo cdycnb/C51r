@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\code.obj" 
+TO ".\Objects\实验二简化可达" 
+PRINT(".\Listings\实验二简化可达.m51") RAMSIZE(256) 

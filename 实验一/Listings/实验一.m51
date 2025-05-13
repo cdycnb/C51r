@@ -1,0 +1,125 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/11/2025  18:52:56  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL5\CORE\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\实验一 PRINT (.\Listings\实验一.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  F:\KEIL5\CORE\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\实验一 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?MAIN
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0066H     UNIT         ?PR?MAIN?MAIN
+            CODE    0866H     0024H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    088AH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\实验一 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DELAY_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\实验一 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0800H         PUBLIC        main
+  C:086AH         PUBLIC        _delay_ms
+  D:0008H         PUBLIC        a
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/11/2025  18:52:56  PAGE 2
+
+
+  C:0866H         SYMBOL        L?0029
+  -------         PROC          L?0028
+  -------         ENDPROC       L?0028
+  C:0866H         SYMBOL        L?0029
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:086AH         LINE#         11
+  C:086AH         LINE#         12
+  C:086AH         LINE#         14
+  C:0874H         LINE#         15
+  C:0889H         LINE#         16
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          MAIN
+  C:0800H         LINE#         21
+  C:0800H         LINE#         22
+  C:0800H         LINE#         23
+  C:0803H         LINE#         24
+  C:0803H         LINE#         25
+  C:0803H         LINE#         26
+  C:0808H         LINE#         27
+  C:0808H         LINE#         28
+  C:080BH         LINE#         29
+  C:0810H         LINE#         30
+  C:0810H         LINE#         31
+  C:0815H         LINE#         32
+  C:0818H         LINE#         33
+  C:081AH         LINE#         34
+  C:0821H         LINE#         35
+  C:0824H         LINE#         36
+  C:0834H         LINE#         37
+  C:0834H         LINE#         38
+  C:0834H         LINE#         40
+  C:0839H         LINE#         41
+  C:0839H         LINE#         42
+  C:083CH         LINE#         43
+  C:0841H         LINE#         44
+  C:0841H         LINE#         45
+  C:0846H         LINE#         46
+  C:0849H         LINE#         47
+  C:084DH         LINE#         48
+  C:0852H         LINE#         50
+  C:0854H         LINE#         51
+  C:0864H         LINE#         52
+  C:0864H         LINE#         53
+  C:0864H         LINE#         54
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 008AH BYTE ( 6%) *
+******************************************************************************
+
+Program Size: data=10.0 xdata=0 code=153
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/11/2025  18:52:56  PAGE 3
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

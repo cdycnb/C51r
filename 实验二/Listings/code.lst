@@ -1,0 +1,76 @@
+C51 COMPILER V9.54   CODE                                                                  05/11/2025 20:04:56 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN .\Objects\code.obj
+COMPILER INVOKED BY: F:\keil5\core\C51\BIN\C51.EXE code.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\c
+                    -ode.lst) TABS(2) OBJECT(.\Objects\code.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          sbit KEY1 = P1^0;  // 亮度25%
+   4          sbit KEY2 = P1^1;  // 亮度50%
+   5          sbit KEY3 = P1^2;  // 亮度75%
+   6          sbit KEY4 = P1^3;  // 亮度100%
+   7          
+   8          unsigned char brightness = 4;  // 默认亮度等级[^1]
+   9          
+  10          void delay(unsigned int time) {
+  11   1          unsigned int i, j;
+  12   1          for(i=0; i<time; i++)
+  13   1              for(j=0; j<1275; j++);  // 基准延时单位[^2]
+  14   1      }
+  15          
+  16          void check_keys() {
+  17   1          // 按键检测与消抖处理[^3]
+  18   1          if(!KEY1) { delay(5); if(!KEY1) { brightness=1; while(!KEY1); }}
+  19   1          if(!KEY2) { delay(5); if(!KEY2) { brightness=2; while(!KEY2); }}
+  20   1          if(!KEY3) { delay(5); if(!KEY3) { brightness=3; while(!KEY3); }}
+  21   1          if(!KEY4) { delay(5); if(!KEY4) { brightness=4; while(!KEY4); }}
+  22   1      }
+  23          
+  24          void delayhuxi(unsigned int base_time) {
+  25   1          unsigned int t = base_time * brightness;  // 亮度系数调整[^4]
+  26   1          unsigned int i;
+  27   1          for( i=0; i<t; i++) {
+  28   2              P2 = 0xff;        // 熄灭LED
+  29   2              delay(1);         // 低电平时间
+  30   2              P2 = ~P2;         // 恢复原状态
+  31   2              delay(5-brightness);  // 高电平时间[^5]
+  32   2          }
+  33   1      }
+  34          
+  35          void main() {
+  36   1          P1 = 0xFF;  // 启用P1口上拉电阻[^6]
+  37   1          P2 = 0x00;
+  38   1          delayhuxi(20);
+  39   1          P2 = 0xfe;
+  40   1          
+  41   1          while(1) {
+  42   2              check_keys();
+  43   2              if(P2 == 0xff) {
+  44   3                  P2 = 0xfe;
+  45   3              } else {
+  46   3                  P2 = P2<<1 | 0x01;
+  47   3                  delayhuxi(20);  // 动态调整延时[^7]
+  48   3              }
+  49   2          }
+  50   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    199    ----
+C51 COMPILER V9.54   CODE                                                                  05/11/2025 20:04:56 PAGE 2   
+
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
